@@ -33,7 +33,13 @@ namespace StudentRegistrationApp
             {
                 cmbYear.Items.Add(year);
             }
-            string[] courses = { "BSIT", "BSTM", "BSP", "BSBA", "BSHM", };
+            string[] courses = { 
+                "Bachelor of Science in Information Technology ",
+                "Bachelor of Science in Tourism Management",
+                "Bachelor of Science in Psychology",
+                "Bachelor of Science in Business Administration",
+                "Bachelor of Science in Hospitality Management ", 
+            };
             {
                 
                 for (int i = 0; i < courses.Length; i++)
@@ -43,9 +49,135 @@ namespace StudentRegistrationApp
                     
             }
         }
-        
 
-        private void TB1_TextChanged(object sender, EventArgs e)
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            string lastName = txtLastName.Text.Trim();
+            string firstName = txtFirstName.Text.Trim();
+            string middleName = txtMiddleName.Text.Trim();
+
+            foreach (char c in lastName + firstName)
+            {
+                if (char.IsDigit(c))
+                {
+                    MessageBox.Show("Invalid input! Names should not contain numbers.",
+                        "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
+            if (string.IsNullOrWhiteSpace(lastName))
+            {
+                MessageBox.Show("Please enter your Last Name.",
+                    "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtLastName.Focus(); return;
+            }
+            if (string.IsNullOrWhiteSpace(middleName))
+            {
+                MessageBox.Show("Please enter your Middle Name.",
+                    "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtMiddleName.Focus(); return;
+            }
+            else if (string.IsNullOrWhiteSpace(firstName))
+            {
+                MessageBox.Show("Please enter your First Name.",
+                    "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtLastName.Focus(); return;
+            }
+
+            else if (!radMale.Checked && !radFemale.Checked)
+            {
+                MessageBox.Show("Please select a Gender.",
+                    "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else if (cmbDay.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a Day.",
+                    "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (cmbMonth.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a Month.",
+                    "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (cmbYear.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a Year.",
+                    "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (cmbPrograms.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a Program.",
+                    "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                int day = cmbDay.SelectedIndex + 1;
+                int month = cmbMonth.SelectedIndex + 1;
+                int year = int.Parse(cmbYear.SelectedItem.ToString());
+                DateTime testDate = new DateTime(year, month, day);
+            }
+            catch
+            {
+                MessageBox.Show("Invalid date! Please check the Day, Month, and Year.",
+                    "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string studGender = radMale.Checked ? "Male" : "Female";
+            string studCourse = cmbPrograms.SelectedItem.ToString();
+
+            string dobDay = cmbDay.SelectedItem.ToString();
+            string dobMonth = cmbMonth.SelectedItem.ToString();
+            string dobYear = cmbYear.SelectedItem.ToString();
+            string dob = dobDay + "/" + dobMonth + "/" + dobYear;
+
+            string fullName = firstName + " " + " " + lastName;
+
+            DisplayStudentInfo(fullName, studGender, dob, studCourse);
+            DisplayStudentInfo(fullName, studCourse);
+            DisplayStudentInfo(firstName, lastName, studCourse);
+        }
+
+        private void DisplayStudentInfo(string firstName, string lastName, string program)
+        {
+            string message = "Student name: " + firstName + " " + lastName + "\n" +
+                             "Program: " + program;
+            MessageBox.Show(message, "Student Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void DisplayStudentInfo(string fullName, string program)
+        {
+            string message = "Student name: " + fullName + "\n" +
+                            "Program: " + program;
+            MessageBox.Show(message, "Student Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void DisplayStudentInfo(string fullName, string gender, string dob, string program)
+        {
+            string message = "Student name: " + fullName + "\n" +
+                             "Gender: " + gender + "\n" +
+                             "Date of birth: " + dob + "\n" +
+                             "Program: " + program;
+            MessageBox.Show(message, "Student Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void lblLastName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbPrograms_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+         private void TB1_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -65,44 +197,19 @@ namespace StudentRegistrationApp
 
         }
 
-        private void btnRegister_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            string firstName = txtLastName.Text;
-            string lastName = txtFirstName.Text;
+            openFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+            openFileDialog1.Title = "Select a Photo";
+            openFileDialog1.FileName = "";
 
-
-            string gender = "";
-
-            if (radMale.Checked)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                gender = "Male";
+                pictureBoxStud.Image = Image.FromFile(openFileDialog1.FileName);
             }
-            else if (radFemale.Checked)
-            {
-                gender = "Female";
-            }
-
-            string days = cmbDay.SelectedItem?.ToString();
-            string months = cmbMonth.SelectedItem?.ToString();
-            string years = cmbYear.SelectedItem?.ToString();
-            string programs = cmbPrograms.SelectedItem?.ToString();
-
-            MessageBox.Show(
-             "STUDENT INFORMATION\n\n" +
-             "STUDENT NAME: " + firstName + " " + lastName + "\n\n" +
-             "GENDER: " + gender + "\n\n" +
-             "DAY OF BIRTH: " + months + "/" + days + "/" + years + "\n\n",
-             "Program: " + programs + "\n\n",
-              MessageBoxButtons.OK,
-             MessageBoxIcon.Information);
         }
 
-        private void lblLastName_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbPrograms_SelectedIndexChanged(object sender, EventArgs e)
+        private void pictureBoxStud_Click(object sender, EventArgs e)
         {
 
         }

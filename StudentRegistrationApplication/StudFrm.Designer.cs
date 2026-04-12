@@ -43,8 +43,12 @@
             this.lblStudentRgrtnForm = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtMiddleName = new System.Windows.Forms.TextBox();
             this.cmbPrograms = new System.Windows.Forms.ComboBox();
+            this.pictureBoxStud = new System.Windows.Forms.PictureBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button1 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStud)).BeginInit();
             this.SuspendLayout();
             // 
             // txtLastName
@@ -218,14 +222,14 @@
             this.label2.TabIndex = 16;
             this.label2.Text = "Middle name *";
             // 
-            // textBox1
+            // txtMiddleName
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(11, 229);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(281, 26);
-            this.textBox1.TabIndex = 15;
+            this.txtMiddleName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMiddleName.Location = new System.Drawing.Point(11, 229);
+            this.txtMiddleName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtMiddleName.Name = "txtMiddleName";
+            this.txtMiddleName.Size = new System.Drawing.Size(281, 26);
+            this.txtMiddleName.TabIndex = 15;
             // 
             // cmbPrograms
             // 
@@ -238,15 +242,45 @@
             this.cmbPrograms.TabIndex = 17;
             this.cmbPrograms.SelectedIndexChanged += new System.EventHandler(this.cmbPrograms_SelectedIndexChanged);
             // 
+            // pictureBoxStud
+            // 
+            this.pictureBoxStud.BackColor = System.Drawing.Color.Gray;
+            this.pictureBoxStud.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBoxStud.Location = new System.Drawing.Point(414, 105);
+            this.pictureBoxStud.Name = "pictureBoxStud";
+            this.pictureBoxStud.Size = new System.Drawing.Size(201, 182);
+            this.pictureBoxStud.TabIndex = 18;
+            this.pictureBoxStud.TabStop = false;
+            this.pictureBoxStud.Click += new System.EventHandler(this.pictureBoxStud_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Crimson;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(456, 296);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(114, 35);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "Browse";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // StuFrmReg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(420, 508);
+            this.BackColor = System.Drawing.Color.Gainsboro;
+            this.ClientSize = new System.Drawing.Size(670, 508);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.pictureBoxStud);
             this.Controls.Add(this.cmbPrograms);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtMiddleName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblStudentRgrtnForm);
             this.Controls.Add(this.lblGender);
@@ -261,10 +295,12 @@
             this.Controls.Add(this.radMale);
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.txtLastName);
+            this.ForeColor = System.Drawing.Color.Black;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "StuFrmReg";
             this.Text = "Student Registration App";
             this.Load += new System.EventHandler(this.frmStudentRegistration_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStud)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,7 +323,10 @@
         private System.Windows.Forms.Label lblStudentRgrtnForm;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtMiddleName;
         private System.Windows.Forms.ComboBox cmbPrograms;
+        private System.Windows.Forms.PictureBox pictureBoxStud;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button button1;
     }
 }
